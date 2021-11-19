@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <header className="App-header">
+      <main className="App-main">
         <ItemListContainer greeting="Esto es un título h1" />
-      </header>
+      </main>
     </div>
   );
 }
