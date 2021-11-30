@@ -1,11 +1,9 @@
-import ItemCount from "./ItemCount";
+import ItemList from "./ItemList";
 
 const ItemListContainer = ({ greeting }) => (
-  <div>
+  <div className="container">
     <h1>{greeting}</h1>
-    <ItemCount stockInicial={10} />
-    <ItemCount stockInicial={5} />
-    <ItemCount stockInicial={3} />
+    <ItemList />
   </div>
 );
 

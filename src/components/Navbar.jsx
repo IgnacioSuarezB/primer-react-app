@@ -5,7 +5,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid container">
         <a className="navbar-brand bg-danger px-2 rounded-3 " href="/#">
-          Pedi2Ya!
+          Pedi2 Ya!
         </a>
         <div className="collapse navbar-collapse " id="navbarNav">
           <ul className="navbar-nav ">
