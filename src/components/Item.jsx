@@ -8,7 +8,7 @@ const Item = ({ item }) => {
         <h3>{item.title}</h3>
         <h4>$ {item.price}</h4>
         <p className="fs-5">{item.description}</p>
-        <p className="fs-6">Ver más</p>
+        <p className="fs-6 ">Ver más</p>
       </div>
     </div>
   );
