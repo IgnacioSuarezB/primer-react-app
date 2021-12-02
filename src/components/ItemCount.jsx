@@ -1,5 +1,5 @@
 import { useState } from "react";
-const ItemCount = ({ stockInicial }) => {
+const ItemCount = ({ stockInicial = 0 }) => {
   const [count, setCount] = useState(1);
   const [stock, setStock] = useState(stockInicial);
 
@@ -9,25 +9,30 @@ const ItemCount = ({ stockInicial }) => {
   const rest = () => {
     if (0 < count) setCount(count - 1);
   };
-  const onAdd = () => {
+  const onAdd = (e) => {
+    if (stock - count === 0) {
+      e.target.classList.add("disabled");
+    }
     setStock(stock - count);
     setCount(0);
+    console.log(stock);
   };
   return (
-    <div class="border border-light mb-3 p-3">
-      <p>Stock: {stock}</p>
-      <button type="button" class="btn btn-primary me-1" onClick={rest}>
+    <div>
+      <span className="me-4">Stock: {stock}</span>
+      <button type="button" className="btn btn-primary me-1" onClick={rest}>
         -
       </button>
-      <span class="px-2">Cantidad: {count} </span>
-      <button type="button" class="btn btn-primary dim-bottom" onClick={sum}>
-        +
-      </button>
+      <span className="px-2">Cantidad: {count} </span>
       <button
         type="button"
-        class="btn btn-info d-block mx-auto mt-2"
-        onClick={onAdd}
+        className="btn btn-primary dim-bottom"
+        onClick={sum}
       >
+        +
+      </button>
+
+      <button type="button" className="btn btn-info ms-3" onClick={onAdd}>
         Agregar al carrito
       </button>
     </div>

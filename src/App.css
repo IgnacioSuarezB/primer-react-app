@@ -3,6 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #282c34;
 }
 
 .App-logo {
@@ -17,7 +18,6 @@
 }
 
 .App-main {
-  background-color: #282c34;
   display: flex;
   flex-direction: column;
   align-items: center;
