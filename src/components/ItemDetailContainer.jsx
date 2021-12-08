@@ -1,5 +1,6 @@
 import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 const itemsAPI = [
   {
     title: "Pelota",
@@ -33,17 +34,19 @@ const itemsAPI = [
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState([]);
+
+  const { paramId } = useParams();
   //Simulación de la API (traigo solo 1 item)
   useEffect(() => {
     let datosItem = new Promise(function (resolve) {
       setTimeout(function () {
-        resolve(itemsAPI[0]);
-      }, 2000);
+        resolve(itemsAPI[paramId]);
+      }, 1000);
     });
     datosItem.then((itemPromesa) => {
       setItem(itemPromesa);
     });
-  }, []);
+  }, [paramId]);
 
   return (
     <section className="mt-3">

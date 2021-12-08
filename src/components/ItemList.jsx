@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Item from "./Item";
 const itemsAPI = [
   {
+    id: 0,
     title: "Pelota",
     price: "500",
     description: "Lorem Ipmsum de Pelota, description",
@@ -20,12 +21,14 @@ const itemsAPI = [
     url: "https://upload.wikimedia.org/wikipedia/commons/4/48/Basketball.jpeg",
   },
   {
+    id: 1,
     title: "Gorra",
     price: "150",
     description: "Lorem Ipmsum de Gorra, description",
     url: "https://www.remerasya.com/pub/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/m/a/marino_1.jpg",
   },
   {
+    id: 2,
     title: "Botines",
     price: "300",
     description: "Lorem Ipmsum de Botines, description",

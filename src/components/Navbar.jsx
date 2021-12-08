@@ -1,18 +1,19 @@
 import CartWidget from "./CartWidget";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid container">
-        <a className="navbar-brand bg-danger px-2 rounded-3 " href="/#">
+        <Link to={"/"} className="navbar-brand bg-danger px-2 rounded-3 ">
           Pedi2 Ya!
-        </a>
-        <div className="collapse navbar-collapse " id="navbarNav">
+        </Link>
+        <div className="collapse navbar-collapse fs-5" id="navbarNav">
           <ul className="navbar-nav ">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/#">
+              <Link to={"/"} className="nav-link">
                 Inicio
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/#">
@@ -35,9 +36,9 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled" href="/#">
-                Disabled
-              </a>
+              <Link to={"/detail"} className="nav-link">
+                Detalles
+              </Link>
             </li>
           </ul>
         </div>
