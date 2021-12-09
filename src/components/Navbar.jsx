@@ -6,7 +6,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid container">
         <Link to={"/"} className="navbar-brand bg-danger px-2 rounded-3 ">
-          Pedi2 Ya!
+          Deporto2!
         </Link>
         <div className="collapse navbar-collapse fs-5" id="navbarNav">
           <ul className="navbar-nav ">
@@ -16,29 +16,24 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">
-                Pedidos
-              </a>
+              <Link to={"/category/ropa"} className="nav-link">
+                Ropa
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">
-                Favoritos
-              </a>
+              <Link to={"/category/deporte"} className="nav-link">
+                Deporte
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">
-                Cuenta
-              </a>
+              <Link to={"/shopout"} className="nav-link">
+                Carrito
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/#">
                 Soporte
               </a>
-            </li>
-            <li className="nav-item">
-              <Link to={"/detail"} className="nav-link">
-                Detalles
-              </Link>
             </li>
           </ul>
         </div>
