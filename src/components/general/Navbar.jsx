@@ -31,9 +31,9 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/#">
+              <Link to={"/support"} className="nav-link">
                 Soporte
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

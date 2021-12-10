@@ -3,7 +3,7 @@ import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/general/Navbar";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <main className="App-main container">
           <Switch>
             <Route exact path="/">
-              <ItemListContainer greeting="Primera entrega proyecto final" />
+              <ItemListContainer greeting="Página principal" />
             </Route>
             <Route path="/category/:categoryId">
               <ItemListContainer greeting="Categoria" />

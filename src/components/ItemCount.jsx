@@ -1,22 +1,19 @@
 import { useState } from "react";
+
 const ItemCount = ({ stockInicial = 0 }) => {
   const [count, setCount] = useState(1);
   const [stock, setStock] = useState(stockInicial);
 
-  const sum = () => {
-    if (stock > count) setCount(count + 1);
-  };
-  const rest = () => {
-    if (0 < count) setCount(count - 1);
-  };
+  const sum = () => (stock > count ? setCount(count + 1) : null);
+
+  const rest = () => (0 < count ? setCount(count - 1) : null);
+
   const onAdd = (e) => {
-    if (stock - count === 0) {
-      e.target.classList.add("disabled");
-    }
+    if (stock - count === 0) e.target.classList.add("disabled");
     setStock(stock - count);
     setCount(0);
-    console.log(stock);
   };
+
   return (
     <div>
       <span className="me-4">Stock: {stock}</span>
