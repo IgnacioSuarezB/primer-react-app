@@ -5,6 +5,7 @@ _E-commerce creado con React_
 ### Autor: Suarez Barraza, Ignacio
 
 ### Tecnologías: React, React-router, Bootstrap
+![funcionando gif](src/Hnet-image.gif)
 
 ## Comenzando 🚀
 ### Asegurarse de tener instalado la última versión de node.js
