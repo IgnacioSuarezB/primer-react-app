@@ -1,8 +1,8 @@
 //import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import ItemListContainer from "./components/ItemListContainer";
-import ItemDetailContainer from "./components/ItemDetailContainer";
+import ItemListContainer from "./components/list/ItemListContainer";
+import ItemDetailContainer from "./components/detail/ItemDetailContainer";
 import Navbar from "./components/general/Navbar";
 
 function App() {

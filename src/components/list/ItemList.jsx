@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Item from "./Item";
 import { useParams } from "react-router-dom";
-import Loader from "./general/Loader";
-import { getItems } from "../services/services";
+import Loader from "../general/Loader";
+import { getItems } from "../../services/services";
 
 const ItemList = () => {
   const [items, setItems] = useState([]);

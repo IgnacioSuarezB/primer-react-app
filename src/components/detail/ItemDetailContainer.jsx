@@ -1,8 +1,8 @@
 import ItemDetail from "./ItemDetail";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loader from "./general/Loader";
-import { getItemById } from "../services/services";
+import Loader from "../general/Loader";
+import { getItemById } from "../../services/services";
 
 const ItemDetailContainer = () => {
   const [item, setItem] = useState([]);
