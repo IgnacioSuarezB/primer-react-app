@@ -7,7 +7,6 @@ const Item = ({ item = [] }) => {
         <h3>{item.title}</h3>
         <h4>$ {item.price}</h4>
         <p className="fs-5">{item.description}</p>
-        {/* <button className="btn btn-dark ">Ver más</button> */}
         <Link to={`/item/${item.id}`} className="btn btn-dark ">
           Ver más
         </Link>

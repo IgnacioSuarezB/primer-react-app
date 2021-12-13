@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ItemCount = ({ stockInicial = 0 }) => {
+const ItemCount = ({ stockInicial = 0, onAdd }) => {
   const [count, setCount] = useState(1);
   const [stock, setStock] = useState(stockInicial);
 
@@ -8,10 +8,11 @@ const ItemCount = ({ stockInicial = 0 }) => {
 
   const rest = () => (0 < count ? setCount(count - 1) : null);
 
-  const onAdd = (e) => {
+  const handleAdd = (e) => {
     if (stock - count === 0) e.target.classList.add("disabled");
     setStock(stock - count);
     setCount(0);
+    onAdd(count);
   };
 
   return (
@@ -29,7 +30,7 @@ const ItemCount = ({ stockInicial = 0 }) => {
         +
       </button>
 
-      <button type="button" className="btn btn-info ms-3" onClick={onAdd}>
+      <button type="button" className="btn btn-info ms-3" onClick={handleAdd}>
         Agregar al carrito
       </button>
     </div>
