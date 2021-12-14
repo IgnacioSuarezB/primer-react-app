@@ -1,17 +1,24 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import ItemCount from "./ItemCount";
+import CartContext from "../cart/CartContext";
+
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
+  const { cartItems, setCartItems } = useContext(CartContext);
+
   function handleCount(quantity) {
     setCartStock(quantity);
-    addToCart();
   }
-  const addToCart = () => {
-    const { cartItems, setCartItems } = useContext(CartContext);
-    item.quantity = quantity;
-    setCartItems([...cartItems, item]);
-  };
+
+  useEffect(() => {
+    if (cartStock !== 0) {
+      item.quantity = cartStock;
+      setCartItems([...cartItems, item]);
+    }
+    // eslint-disable-next-line
+  }, [cartStock]);
+
   return (
     <div className="text-start my-3">
       {item.stock === undefined ? null : (
