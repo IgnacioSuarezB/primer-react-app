@@ -3,9 +3,15 @@ import { useState } from "react";
 import ItemCount from "./ItemCount";
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
-  function handleCount(addCart) {
-    setCartStock(addCart);
+  function handleCount(quantity) {
+    setCartStock(quantity);
+    addToCart();
   }
+  const addToCart = () => {
+    const { cartItems, setCartItems } = useContext(CartContext);
+    item.quantity = quantity;
+    setCartItems([...cartItems, item]);
+  };
   return (
     <div className="text-start my-3">
       {item.stock === undefined ? null : (
