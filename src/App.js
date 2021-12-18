@@ -12,7 +12,7 @@ function App() {
       <CartContextProvider>
         <BrowserRouter>
           <Navbar />
-          <main className="App-main container">
+          <main className="App-main container maxWidth ">
             <Switch>
               <Route exact path="/">
                 <ItemListContainer greeting="Página principal" />

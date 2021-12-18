@@ -6,7 +6,7 @@ const CartWidget = ({ height }) => {
   return (
     <div className="d-flex">
       <span className="pe-3 fs-2 " style={{ color: "orange" }}>
-        {cartItems.length}
+        {cartItems.reduce((total, item) => total + item.quantity, 0)}
       </span>
       <img
         style={{ height: height }}

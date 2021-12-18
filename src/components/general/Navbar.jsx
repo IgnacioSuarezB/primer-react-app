@@ -1,10 +1,11 @@
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
+import "../../App.css";
 
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid container">
+      <div className="container-fluid container maxWidth ">
         <Link to={"/"} className="navbar-brand bg-danger px-2 rounded-3 ">
           Deporto2!
         </Link>

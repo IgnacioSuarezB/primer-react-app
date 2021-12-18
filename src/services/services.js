@@ -19,9 +19,9 @@ export const getItemById = (id) => {
 const itemsAPI = [
   {
     id: 0,
-    title: "Pelota",
+    title: "Pelota Molten N°5",
     category: "deporte",
-    price: "500",
+    price: 500,
     stock: 3,
     description: "Lorem Ipmsum de Pelota, description",
     detail: `- COSTURA: COSIDA A MANO
@@ -40,9 +40,9 @@ const itemsAPI = [
   },
   {
     id: 1,
-    title: "Gorra",
+    title: "Gorra Beisbol Adultos",
     category: "ropa",
-    price: "150",
+    price: 150,
     stock: 10,
     description: "Lorem Ipmsum de Gorra, description",
     detail: "Gorra de entrenamiento para adultos Adidas Beisbol.",
@@ -50,9 +50,9 @@ const itemsAPI = [
   },
   {
     id: 2,
-    title: "Botines",
+    title: "Botines Predator 42'",
     category: "deporte",
-    price: "300",
+    price: 300,
     stock: 5,
     description: "Lorem Ipmsum de Botines, description",
     detail:
@@ -63,7 +63,7 @@ const itemsAPI = [
     id: 3,
     title: "Camiseta Boca Juniors",
     category: "deporte",
-    price: "900",
+    price: 900,
     stock: 1,
     description: "Lorem Ipmsum de Camiseta Boca Juniors, description",
     detail:
@@ -74,7 +74,7 @@ const itemsAPI = [
     id: 4,
     title: "PALETA ML 10 SHOTGUN NOX",
     category: "deporte",
-    price: "1500",
+    price: 1500,
     stock: 2,
     description: "Lorem Ipmsum de PALETA, description",
     detail:
@@ -85,7 +85,7 @@ const itemsAPI = [
     id: 5,
     title: "CANGURO SPORT CLASH NIKE",
     category: "ropa",
-    price: "300",
+    price: 300,
     stock: 15,
     description: "Lorem Ipmsum de Buzo, description",
     detail:
