@@ -26,7 +26,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/shopout"} className="nav-link">
+              <Link to={"/cart"} className="nav-link">
                 Carrito
               </Link>
             </li>
@@ -37,7 +37,9 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <CartWidget height={45} />
+        <Link to={"/cart"} className=" text-decoration-none">
+          <CartWidget height={45} />
+        </Link>
         <button
           className="navbar-toggler"
           type="button"

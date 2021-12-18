@@ -5,16 +5,17 @@ import CartContext from "../cart/CartContext";
 
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
-  const { cartItems, setCartItems } = useContext(CartContext);
-
-  function handleCount(quantity) {
-    setCartStock(quantity);
-  }
+  const [isInCart, setIsInCart] = useState(false);
+  const { cartItems, addItem, ItemInCart } = useContext(CartContext);
 
   useEffect(() => {
     if (cartStock !== 0) {
-      item.quantity = cartStock;
-      setCartItems([...cartItems, item]);
+      if (ItemInCart(cartItems, item.id)) {
+        setIsInCart(true);
+      } else {
+        item.quantity = cartStock;
+        addItem(item);
+      }
     }
     // eslint-disable-next-line
   }, [cartStock]);
@@ -29,7 +30,14 @@ const ItemDetail = ({ item = [] }) => {
             <span>Precio de lista: $ {item.price}</span>
             <p className="fs-5">Caracteristicas: {item.detail}</p>
             {cartStock === 0 ? (
-              <ItemCount stockInicial={item.stock} onAdd={handleCount} />
+              <ItemCount stockInicial={item.stock} onAdd={setCartStock} />
+            ) : isInCart ? (
+              <div class="alert alert-warning text-center" role="alert">
+                Ya posee este producto en el carrito{" "}
+                <Link className="ms-4" to={"/cart"}>
+                  Ir al carrito
+                </Link>
+              </div>
             ) : (
               <div>
                 <h4>
