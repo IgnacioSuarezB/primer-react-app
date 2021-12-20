@@ -18,9 +18,13 @@ export const CartContextProvider = ({ children }) => {
   };
   const changeQuantity = (item, quantity) => {
     if (quantity !== "") {
+      let stock = item.stock;
       removeItem(item.id);
       let change = item;
-      change.quantity = parseInt(quantity);
+      if (stock > quantity && quantity >= 0)
+        change.quantity = parseInt(quantity);
+      if (stock <= quantity) change.quantity = stock;
+      if (quantity < 0) change.quantity = 0;
       addItem(change);
     }
   };
