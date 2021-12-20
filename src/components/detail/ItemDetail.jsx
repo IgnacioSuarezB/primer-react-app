@@ -6,11 +6,11 @@ import CartContext from "../cart/CartContext";
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
   const [isInCart, setIsInCart] = useState(false);
-  const { cartItems, addItem, ItemInCart } = useContext(CartContext);
+  const { cartItems, addItem, itemInCart } = useContext(CartContext);
 
   useEffect(() => {
     if (cartStock !== 0) {
-      if (ItemInCart(cartItems, item.id)) {
+      if (itemInCart(cartItems, item.id)) {
         setIsInCart(true);
       } else {
         item.quantity = cartStock;

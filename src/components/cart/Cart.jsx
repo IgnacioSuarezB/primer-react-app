@@ -1,42 +1,67 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import CartContext from "./CartContext";
 
 const Cart = () => {
-  const { cartItems, removeItem } = useContext(CartContext);
-  const handleQuantity = () => null;
+  const { cartItems, removeItem, changeQuantity } = useContext(CartContext);
   return (
     <div>
       {cartItems.length === 0 ? (
-        <h2>No hay items</h2>
+        <>
+          <h2>No hay items en el carrito</h2>
+          <Link to={"/"} className="nav-link">
+            Ver productos
+          </Link>
+        </>
       ) : (
         <div>
           <h1 className="mb-4 text-start">Carrito de compras</h1>
           <div className="d-flex">
             <div className="items col-9">
               {cartItems.map((item) => (
-                <div className="items d-flex flex-row mb-4" key={item.id}>
-                  <div className="col-3">
+                <div
+                  className="items d-flex flex-row align-items-center mb-4"
+                  key={item.id}
+                >
+                  <div className="col-2">
                     <img
                       className="img-fluid"
                       src={item.url}
                       alt={item.title}
                     />
                   </div>
-                  <div className="col-5 ">
+                  <div className="col-5">
                     <h3>{item.title}</h3>
-                    <p className="text-start fs-5 mx-3">{item.description}</p>
+                    <p className="text-start fs-5 mx-3 my-0">
+                      {item.description}
+                    </p>
+                    <p className="text-start fs-6 mx-3 my-0">
+                      Stock disponible: {item.stock}
+                    </p>
                   </div>
-                  <div className="col-2 mt-4">
+                  <div className="col-2">
                     <input
                       className="col-3 text-center"
                       type="number"
                       defaultValue={item.quantity}
-                      onChange={() => handleQuantity(item.id)}
+                      onChange={(e) => changeQuantity(item, e.target.value)}
+                      min={0}
+                      max={item.stock}
+                      step={1}
                     />
                     <span> x {item.price}</span>
                   </div>
-                  <div className="col-2 mt-4">
+                  <div className="col-2">
                     <span>$ {item.price * item.quantity}</span>
+                  </div>
+                  <div className="col-1">
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => removeItem(item.id)}
+                    >
+                      X
+                    </button>
                   </div>
                 </div>
               ))}
@@ -64,13 +89,14 @@ const Cart = () => {
                     ) + 300}
                   </p>
                 </div>
-                <button className="mt-3">Comprar</button>
+                <button type="button" className="btn btn-success btn-lg">
+                  Finalizar Compra
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
-      <button onClick={() => removeItem(0)}>Remover item id 0</button>
     </div>
   );
 };
