@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import CartContext from "./CartContext";
+import CartContext from "../../context/CartContext";
 
 const Cart = () => {
-  const { cartItems, removeItem, changeQuantity } = useContext(CartContext);
+  const { cartItems, removeItem, changeQuantity, clearCart } =
+    useContext(CartContext);
   return (
     <div>
       {cartItems.length === 0 ? (
@@ -65,6 +66,9 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
+              <button type="button" class="btn btn-danger" onClick={clearCart}>
+                Eliminar todos los items
+              </button>
             </div>
             <div className="resumen col-3">
               <div className="border m-4 p-4 border-info border-0 rounded rounded-2 bg-dark bg-gradient ">

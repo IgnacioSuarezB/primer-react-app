@@ -1,4 +1,4 @@
-import CartContext from "../cart/CartContext";
+import CartContext from "../../context/CartContext";
 import { useContext } from "react";
 
 const CartWidget = ({ height }) => {

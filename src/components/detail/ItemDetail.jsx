@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import ItemCount from "./ItemCount";
-import CartContext from "../cart/CartContext";
+import CartContext from "../../context/CartContext";
 
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
