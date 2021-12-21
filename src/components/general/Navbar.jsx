@@ -17,23 +17,23 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/category/ropa"} className="nav-link">
-                Ropa
+              <Link to={"/category/calzado"} className="nav-link">
+                Calzado
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/category/deporte"} className="nav-link">
-                Deporte
+              <Link to={"/category/indumentaria"} className="nav-link">
+                Indumentaria
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to={"/category/accesorios"} className="nav-link">
+                Accesorios
               </Link>
             </li>
             <li className="nav-item">
               <Link to={"/cart"} className="nav-link">
                 Carrito
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/support"} className="nav-link">
-                Soporte
               </Link>
             </li>
           </ul>

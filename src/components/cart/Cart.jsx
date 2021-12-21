@@ -66,12 +66,16 @@ const Cart = () => {
                   </div>
                 </div>
               ))}
-              <button type="button" class="btn btn-danger" onClick={clearCart}>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={clearCart}
+              >
                 Eliminar todos los items
               </button>
             </div>
             <div className="resumen col-3">
-              <div className="border m-4 p-4 border-info border-0 rounded rounded-2 bg-dark bg-gradient ">
+              <div className="border m-4 me-0 p-4 border-info border-0 rounded rounded-2 bg-dark bg-gradient ">
                 <h2 className="mb-4">Resumen</h2>
                 <div className="text-start fs-4">
                   <p className="mb-0">Productos</p>
