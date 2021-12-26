@@ -1,12 +1,41 @@
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 
+/// clase firebase 2
+
 const Cart = () => {
+  const [formInput, setFormInput] = useState(false);
   const { cartItems, removeItem, changeQuantity, clearCart } =
     useContext(CartContext);
+  let total =
+    cartItems.reduce((total, item) => total + item.price * item.quantity, 0) +
+    300;
+
+  const formRef = useRef(null);
+
+  const handleShopout = () => {
+    setFormInput(true);
+    setTimeout(() => {
+      formRef.current.scrollIntoView();
+    }, 300);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formularioCompleto = {
+      buyer: {
+        name: e.target.name.value,
+        phone: e.target.phone.value,
+        email: e.target.email.value,
+      },
+      items: [...cartItems],
+      total: total,
+    };
+    console.log(formularioCompleto);
+  };
+
   return (
-    <div>
+    <div className="mb-5">
       {cartItems.length === 0 ? (
         <>
           <h2>No hay items en el carrito</h2>
@@ -97,7 +126,11 @@ const Cart = () => {
                     ) + 300}
                   </p>
                 </div>
-                <button type="button" className="btn btn-success btn-lg">
+                <button
+                  type="button"
+                  className="btn btn-success btn-lg"
+                  onClick={handleShopout}
+                >
                   Finalizar Compra
                 </button>
               </div>
@@ -105,6 +138,39 @@ const Cart = () => {
           </div>
         </div>
       )}
+
+      {formInput === true ? (
+        <form onSubmit={handleSubmit} className="text-start fs-3" ref={formRef}>
+          <h1>Formulario de compra</h1>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">
+              Dirección Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              aria-describedby="email"
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">
+              Nombre y Apellido
+            </label>
+            <input type="text" className="form-control" id="name" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">
+              Número de Celular
+            </label>
+            <input type="number" className="form-control" id="phone" />
+          </div>
+
+          <button type="submit" className="btn btn-primary">
+            Comprar
+          </button>
+        </form>
+      ) : null}
     </div>
   );
 };
