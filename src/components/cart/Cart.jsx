@@ -1,7 +1,15 @@
 import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../../context/CartContext";
-
+import {
+  addDoc,
+  doc,
+  collection,
+  writeBatch,
+  Timestamp,
+  getDoc,
+} from "firebase/firestore";
+import { db } from "../../services/firebase";
 /// clase firebase 2
 
 const Cart = () => {
@@ -18,22 +26,51 @@ const Cart = () => {
     setFormInput(true);
     setTimeout(() => {
       formRef.current.scrollIntoView();
-    }, 300);
+    }, 100);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formularioCompleto = {
-      buyer: {
-        name: e.target.name.value,
-        phone: e.target.phone.value,
-        email: e.target.email.value,
-      },
-      items: [...cartItems],
-      total: total,
-    };
-    console.log(formularioCompleto);
+    let arrayItems = [...cartItems];
+    const batch = writeBatch(db);
+    const outOfStock = [];
+    arrayItems.forEach((item) => {
+      console.log(item.id);
+      getDoc(doc(db, "items", item.id)).then((documentSnapshot) => {
+        if (documentSnapshot.data().stock >= item.quantity) {
+          console.log("update", documentSnapshot.id);
+          batch.update(doc(db, "items", documentSnapshot.id), {
+            stock: documentSnapshot.data().stock - item.quantity,
+          });
+        } else {
+          outOfStock.push({
+            id: documentSnapshot.id,
+            ...documentSnapshot.data(),
+          });
+        }
+        if (outOfStock.length === 0) {
+          batch.commit().then(() => console.log("La orden fue confirmada"));
+          const shopoutForm = {
+            buyer: {
+              name: e.target.name.value,
+              phone: e.target.phone.value,
+              email: e.target.email.value,
+            },
+            items: [...cartItems],
+            total: total,
+            date: Timestamp.fromDate(new Date()),
+          };
+          sendForm(shopoutForm);
+        }
+      });
+    });
   };
-
+  const sendForm = (form) => {
+    addDoc(collection(db, "orders"), form).then(({ id }) => {
+      console.log("Su número de compra es", id);
+      clearCart();
+      setFormInput(false);
+    });
+  };
   return (
     <div className="mb-5">
       {cartItems.length === 0 ? (
@@ -44,7 +81,7 @@ const Cart = () => {
           </Link>
         </>
       ) : (
-        <div>
+        <div className="cartContainer">
           <h1 className="mb-4 text-start">Carrito de compras</h1>
           <div className="d-flex">
             <div className="items col-9">
@@ -140,7 +177,11 @@ const Cart = () => {
       )}
 
       {formInput === true ? (
-        <form onSubmit={handleSubmit} className="text-start fs-3" ref={formRef}>
+        <form
+          onSubmit={handleSubmit}
+          className="text-start fs-3 cartContainer"
+          ref={formRef}
+        >
           <h1>Formulario de compra</h1>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -163,7 +204,7 @@ const Cart = () => {
             <label htmlFor="phone" className="form-label">
               Número de Celular
             </label>
-            <input type="number" className="form-control" id="phone" />
+            <input type="tel" className="form-control" id="phone" />
           </div>
 
           <button type="submit" className="btn btn-primary">

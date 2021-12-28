@@ -3,7 +3,6 @@ import { useContext } from "react";
 
 const CartWidget = ({ height }) => {
   const { cartItems } = useContext(CartContext);
-  console.log(cartItems);
   return (
     <div className="d-flex">
       <span className="pe-3 fs-2 " style={{ color: "orange" }}>

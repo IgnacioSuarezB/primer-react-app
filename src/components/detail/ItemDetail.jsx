@@ -32,7 +32,7 @@ const ItemDetail = ({ item = [] }) => {
             {cartStock === 0 ? (
               <ItemCount stockInicial={item.stock} onAdd={setCartStock} />
             ) : isInCart ? (
-              <div class="alert alert-warning text-center" role="alert">
+              <div className="alert alert-warning text-center" role="alert">
                 Ya posee este producto en el carrito{" "}
                 <Link className="ms-4" to={"/cart"}>
                   Ir al carrito
