@@ -1,19 +1,31 @@
 import { useParams } from "react-router-dom";
+import { useState } from "react/cjs/react.development";
 import OrderDetail from "./OrderDetail";
 
 const OrderContainer = () => {
   const { orderId } = useParams();
-  console.log("parametro", orderId, "fin");
-  //Object.keys(order).length === 0 ?
+  const [id, setId] = useState(orderId);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setId(e.target.findOrder.value);
+  };
+
   return (
     <div>
-      {orderId === "find" ? (
-        <form>
-          <input type="text" name="findOrder" id="findOrder" />
+      {id === "find" ? (
+        <form onSubmit={handleSubmit}>
+          <h1>Buscar orden de compra</h1>
+          <input
+            type="text"
+            name="findOrder"
+            id="findOrder"
+            placeholder="Ingrese ID de compra"
+          />
           <input type="submit" value="Buscar" />
         </form>
       ) : (
-        <OrderDetail orderId={orderId} />
+        <OrderDetail orderId={id} />
       )}
     </div>
   );

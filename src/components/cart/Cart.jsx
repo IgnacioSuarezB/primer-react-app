@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import {
   addDoc,
@@ -14,6 +14,7 @@ import { db } from "../../services/firebase";
 
 const Cart = () => {
   const [formInput, setFormInput] = useState(false);
+  const [redirect, setRedirect] = useState("false");
   const { cartItems, removeItem, changeQuantity, clearCart } =
     useContext(CartContext);
   let total =
@@ -34,7 +35,6 @@ const Cart = () => {
     const batch = writeBatch(db);
     const outOfStock = [];
     arrayItems.forEach((item) => {
-      console.log(item.id);
       getDoc(doc(db, "items", item.id)).then((documentSnapshot) => {
         if (documentSnapshot.data().stock >= item.quantity) {
           console.log("update", documentSnapshot.id);
@@ -47,28 +47,32 @@ const Cart = () => {
             ...documentSnapshot.data(),
           });
         }
-        if (outOfStock.length === 0) {
-          batch.commit().then(() => console.log("La orden fue confirmada"));
-          const shopoutForm = {
-            buyer: {
-              name: e.target.name.value,
-              phone: e.target.phone.value,
-              email: e.target.email.value,
-            },
-            items: [...cartItems],
-            total: total,
-            date: Timestamp.fromDate(new Date()),
-          };
-          sendForm(shopoutForm);
-        }
       });
     });
+    if (outOfStock.length === 0) {
+      const shopoutForm = {
+        buyer: {
+          name: e.target.name.value,
+          phone: e.target.phone.value,
+          email: e.target.email.value,
+        },
+        items: [...cartItems],
+        total: total,
+        date: Timestamp.fromDate(new Date()),
+      };
+      sendData(shopoutForm, batch);
+      setTimeout(() => {
+        console.log("5 seg");
+      }, 5000);
+    }
   };
-  const sendForm = (form) => {
+  const sendData = (form, batch) => {
     addDoc(collection(db, "orders"), form).then(({ id }) => {
+      batch.commit().then(() => console.log("La orden fue confirmada"));
       console.log("Su número de compra es", id);
       clearCart();
       setFormInput(false);
+      setRedirect(id);
     });
   };
   return (
@@ -211,7 +215,9 @@ const Cart = () => {
             Comprar
           </button>
         </form>
-      ) : null}
+      ) : redirect === "false" ? null : (
+        <Redirect to={"/order/" + redirect} />
+      )}
     </div>
   );
 };
