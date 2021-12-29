@@ -1,16 +1,29 @@
 import { Link } from "react-router-dom";
 const Item = ({ item = [] }) => {
   return (
-    <div style={{ width: 350 }} className="border border-1 m-2 p-0">
-      <img src={item.url} className="card-img-top " alt="..." />
-      <div className="card-body">
-        <h3>{item.title}</h3>
-        <h4>$ {item.price}</h4>
-        <p className="fs-5">{item.description}</p>
-        <Link to={`/item/${item.id}`} className="btn btn-dark ">
-          Ver más
-        </Link>
-      </div>
+    <div style={{ width: 250 }} className="border border-1 m-2 p-0">
+      <Link to={`/item/${item.id}`} className="text-decoration-none text-light">
+        <div
+          className="border-bottom text-center bg-light d-flex align-items-center justify-content-center"
+          style={{ height: 250 }}
+        >
+          <img
+            style={{
+              maxWidth: 250,
+              maxHeight: 250,
+            }}
+            src={item.url}
+            className=""
+            alt="..."
+          />
+        </div>
+        <div className="card-body">
+          <h4 className="fs-3 text-start">
+            $ {item.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}
+          </h4>
+          <h3 className="fs-5 fw-light text-start">{item.title}</h3>
+        </div>
+      </Link>
     </div>
   );
 };
