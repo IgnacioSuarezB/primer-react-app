@@ -5,6 +5,7 @@ import ItemDetailContainer from "./components/detail/ItemDetailContainer";
 import Navbar from "./components/general/Navbar";
 import Cart from "./components/cart/Cart";
 import { CartContextProvider } from "./context/CartContext";
+import OrderContainer from "./components/order/OrderContainer";
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
               </Route>
               <Route path="/cart">
                 <Cart />
+              </Route>
+              <Route path="/order/:orderId">
+                <OrderContainer />
               </Route>
             </Switch>
           </main>

@@ -36,6 +36,11 @@ function Navbar() {
                 Carrito
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to={"/order/find"} className="nav-link">
+                Compras
+              </Link>
+            </li>
           </ul>
         </div>
         <Link to={"/cart"} className=" text-decoration-none">
