@@ -94,18 +94,18 @@ const Cart = () => {
                   className="items d-flex flex-row align-items-center mb-4"
                   key={item.id}
                 >
-                  <div className="col-2">
+                  <div className="col-2 bg-light">
                     <img
                       className="img-fluid"
                       src={item.url}
                       alt={item.title}
+                      style={{
+                        maxHeight: 150,
+                      }}
                     />
                   </div>
-                  <div className="col-5">
-                    <h3>{item.title}</h3>
-                    <p className="text-start fs-5 mx-3 my-0">
-                      {item.description}
-                    </p>
+                  <div className="col-5 ms-3 mt-2 align-self-start">
+                    <h4 className="fs-5 text-start">{item.title}</h4>
                     <p className="text-start fs-6 mx-3 my-0">
                       Stock disponible: {item.stock}
                     </p>
@@ -196,19 +196,26 @@ const Cart = () => {
               className="form-control"
               id="email"
               aria-describedby="email"
+              required
             />
           </div>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Nombre y Apellido
             </label>
-            <input type="text" className="form-control" id="name" />
+            <input type="text" className="form-control" id="name" required />
           </div>
           <div className="mb-3">
             <label htmlFor="phone" className="form-label">
               Número de Celular
             </label>
-            <input type="tel" className="form-control" id="phone" />
+            <input
+              type="tel"
+              className="form-control"
+              id="phone"
+              required
+              pattern="[0-9]*"
+            />
           </div>
 
           <button type="submit" className="btn btn-primary">

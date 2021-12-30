@@ -14,14 +14,13 @@ const ItemCount = ({ stockInicial = 0, onAdd }) => {
     setCount(0);
     onAdd(count);
   };
-
   return (
     <div>
-      <span className="me-4">Stock: {stock}</span>
+      <span className="me-4 fs-4">Stock: {stock}</span>
       <button type="button" className="btn btn-primary me-1" onClick={rest}>
         -
       </button>
-      <span className="px-2">Cantidad: {count} </span>
+      <span className="px-2 fs-4">Cantidad: {count} </span>
       <button
         type="button"
         className="btn btn-primary dim-bottom"
@@ -29,10 +28,29 @@ const ItemCount = ({ stockInicial = 0, onAdd }) => {
       >
         +
       </button>
+      {stock === 0 ? (
+        <>
+          <button
+            type="button"
+            className="btn btn-success ms-3 fw-bold disabled"
+            onClick={handleAdd}
+          >
+            Agregar al carrito
+          </button>
 
-      <button type="button" className="btn btn-info ms-3" onClick={handleAdd}>
-        Agregar al carrito
-      </button>
+          <button type="button" class="btn btn-danger ms-4">
+            Sin Stock
+          </button>
+        </>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-success ms-3 fw-bold"
+          onClick={handleAdd}
+        >
+          Agregar al carrito
+        </button>
+      )}
     </div>
   );
 };

@@ -24,9 +24,18 @@ const ItemDetail = ({ item = [] }) => {
     <div className="text-start my-3">
       {item.stock === undefined ? null : (
         <div className="row align-items-start">
-          <img src={item.url} className="col-3" alt={item.description} />
+          <div className="bg-light d-flex align-items-center justify-content-center col-3">
+            <img
+              src={item.url}
+              style={{
+                maxWidth: 250,
+                maxHeight: 350,
+              }}
+              alt={item.description}
+            />
+          </div>
           <div className=" col-9">
-            <h1>Detalles de {item.title}</h1>
+            <h1 className="fs-2">Detalles de {item.title}</h1>
             <span>Precio de lista: $ {item.price}</span>
             <p className="fs-5">Caracteristicas: {item.detail}</p>
             {cartStock === 0 ? (

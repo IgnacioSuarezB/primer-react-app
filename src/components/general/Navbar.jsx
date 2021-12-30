@@ -4,7 +4,7 @@ import "../../App.css";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark border-bottom border-2 border-dark">
       <div className="container-fluid container maxWidth ">
         <Link to={"/"} className="navbar-brand bg-danger px-2 rounded-3 ">
           Deporto2!

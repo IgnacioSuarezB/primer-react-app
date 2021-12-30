@@ -21,3 +21,10 @@
 .cartContainer {
   min-height: 90vh;
 }
+
+.bg2 {
+  background-color: #111129;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 1000'%3E%3Cg %3E%3Ccircle fill='%23111129' cx='50' cy='0' r='50'/%3E%3Cg fill='%23111128' %3E%3Ccircle cx='0' cy='50' r='50'/%3E%3Ccircle cx='100' cy='50' r='50'/%3E%3C/g%3E%3Ccircle fill='%23101028' cx='50' cy='100' r='50'/%3E%3Cg fill='%23101027' %3E%3Ccircle cx='0' cy='150' r='50'/%3E%3Ccircle cx='100' cy='150' r='50'/%3E%3C/g%3E%3Ccircle fill='%230f0f26' cx='50' cy='200' r='50'/%3E%3Cg fill='%230f0f25' %3E%3Ccircle cx='0' cy='250' r='50'/%3E%3Ccircle cx='100' cy='250' r='50'/%3E%3C/g%3E%3Ccircle fill='%230e0e24' cx='50' cy='300' r='50'/%3E%3Cg fill='%230e0e24' %3E%3Ccircle cx='0' cy='350' r='50'/%3E%3Ccircle cx='100' cy='350' r='50'/%3E%3C/g%3E%3Ccircle fill='%230d0d23' cx='50' cy='400' r='50'/%3E%3Cg fill='%230d0d22' %3E%3Ccircle cx='0' cy='450' r='50'/%3E%3Ccircle cx='100' cy='450' r='50'/%3E%3C/g%3E%3Ccircle fill='%230c0c21' cx='50' cy='500' r='50'/%3E%3Cg fill='%230b0c20' %3E%3Ccircle cx='0' cy='550' r='50'/%3E%3Ccircle cx='100' cy='550' r='50'/%3E%3C/g%3E%3Ccircle fill='%230b0b1f' cx='50' cy='600' r='50'/%3E%3Cg fill='%230a0a1e' %3E%3Ccircle cx='0' cy='650' r='50'/%3E%3Ccircle cx='100' cy='650' r='50'/%3E%3C/g%3E%3Ccircle fill='%23090a1d' cx='50' cy='700' r='50'/%3E%3Cg fill='%2309091c' %3E%3Ccircle cx='0' cy='750' r='50'/%3E%3Ccircle cx='100' cy='750' r='50'/%3E%3C/g%3E%3Ccircle fill='%2308081b' cx='50' cy='800' r='50'/%3E%3Cg fill='%2307071a' %3E%3Ccircle cx='0' cy='850' r='50'/%3E%3Ccircle cx='100' cy='850' r='50'/%3E%3C/g%3E%3Ccircle fill='%23050619' cx='50' cy='900' r='50'/%3E%3Cg fill='%23040517' %3E%3Ccircle cx='0' cy='950' r='50'/%3E%3Ccircle cx='100' cy='950' r='50'/%3E%3C/g%3E%3Ccircle fill='%23010316' cx='50' cy='1000' r='50'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: contain;
+}

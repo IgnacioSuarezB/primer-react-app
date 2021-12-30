@@ -9,7 +9,7 @@ import OrderContainer from "./components/order/OrderContainer";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg2">
       <CartContextProvider>
         <BrowserRouter>
           <Navbar />
