@@ -1,27 +1,20 @@
 import { useContext, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import CartContext from "../../context/CartContext";
-import {
-  addDoc,
-  doc,
-  collection,
-  writeBatch,
-  Timestamp,
-  getDoc,
-} from "firebase/firestore";
-import { db } from "../../services/firebase";
-/// clase firebase 2
+import { firestoreSetOrder } from "../../services/firebase";
 
 const Cart = () => {
   const [formInput, setFormInput] = useState(false);
   const [redirect, setRedirect] = useState("false");
+
   const { cartItems, removeItem, changeQuantity, clearCart } =
     useContext(CartContext);
+
+  const formRef = useRef(null);
+
   let total =
     cartItems.reduce((total, item) => total + item.price * item.quantity, 0) +
     300;
-
-  const formRef = useRef(null);
 
   const handleShopout = () => {
     setFormInput(true);
@@ -29,52 +22,16 @@ const Cart = () => {
       formRef.current.scrollIntoView();
     }, 100);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let arrayItems = [...cartItems];
-    const batch = writeBatch(db);
-    const outOfStock = [];
-    arrayItems.forEach((item) => {
-      getDoc(doc(db, "items", item.id)).then((documentSnapshot) => {
-        if (documentSnapshot.data().stock >= item.quantity) {
-          console.log("update", documentSnapshot.id);
-          batch.update(doc(db, "items", documentSnapshot.id), {
-            stock: documentSnapshot.data().stock - item.quantity,
-          });
-        } else {
-          outOfStock.push({
-            id: documentSnapshot.id,
-            ...documentSnapshot.data(),
-          });
-        }
-      });
-    });
-    if (outOfStock.length === 0) {
-      const shopoutForm = {
-        buyer: {
-          name: e.target.name.value,
-          phone: e.target.phone.value,
-          email: e.target.email.value,
-        },
-        items: [...cartItems],
-        total: total,
-        date: Timestamp.fromDate(new Date()),
-      };
-      sendData(shopoutForm, batch);
-      setTimeout(() => {
-        console.log("5 seg");
-      }, 5000);
-    }
-  };
-  const sendData = (form, batch) => {
-    addDoc(collection(db, "orders"), form).then(({ id }) => {
-      batch.commit().then(() => console.log("La orden fue confirmada"));
-      console.log("Su número de compra es", id);
+    firestoreSetOrder([...cartItems], e.target, total).then((id) => {
       clearCart();
       setFormInput(false);
       setRedirect(id);
     });
   };
+
   return (
     <div className="mb-5">
       {cartItems.length === 0 ? (

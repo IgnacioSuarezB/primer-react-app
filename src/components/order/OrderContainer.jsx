@@ -13,7 +13,7 @@ const OrderContainer = () => {
 
   return (
     <div>
-      {id === "find" ? (
+      {id === "0" ? (
         <form onSubmit={handleSubmit}>
           <h1>Buscar orden de compra</h1>
           <input

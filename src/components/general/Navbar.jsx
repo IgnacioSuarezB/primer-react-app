@@ -37,7 +37,7 @@ function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to={"/order/find"} className="nav-link">
+              <Link to={"/order/0"} className="nav-link">
                 Compras
               </Link>
             </li>

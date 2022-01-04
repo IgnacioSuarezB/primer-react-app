@@ -1,22 +1,20 @@
 import { useEffect, useState } from "react/cjs/react.development";
-import { db } from "../../services/firebase";
-import { getDoc, doc } from "firebase/firestore";
+import { getOrder } from "../../services/firebase";
 import Loader from "../general/Loader";
 
 const OrderDetail = ({ orderId }) => {
   const [order, setOrder] = useState({});
+
   useEffect(() => {
-    getDoc(doc(db, "orders", orderId))
-      .then((querySnapshot) => {
-        const orderData = { id: querySnapshot.id, ...querySnapshot.data() };
-        setOrder(orderData);
-        console.log(orderData);
+    getOrder(orderId)
+      .then((order) => {
+        setOrder(order);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [orderId]);
-  console.log(order);
+
   return (
     <div>
       {Object.keys(order).length === 0 ? (

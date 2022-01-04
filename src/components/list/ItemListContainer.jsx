@@ -1,42 +1,50 @@
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-//import { getItems } from "../../services/services";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../services/firebase";
+import { getProducts } from "../../services/firebase";
+
 const ItemListContainer = ({ greeting }) => {
   const [items, setItems] = useState([]);
   const { categoryId } = useParams();
 
   useEffect(() => {
-    let products = [];
-    if (!categoryId) {
-      getDocs(collection(db, "items")).then((querySnapshot) => {
-        products = querySnapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
-        setItems(products);
-      });
-    }
-    if (categoryId) {
-      getDocs(
-        query(collection(db, "items"), where("category", "==", categoryId))
-      ).then((querySnapshot) => {
-        products = querySnapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
-        setItems(products);
-      });
-    }
-
-    /*const datosAPI = getItems();
-    datosAPI.then((itemsPromesa) => {
-      if (categoryId)
-        itemsPromesa = itemsPromesa.filter(
-          (item) => item.category === categoryId
-        );
-      setItems(itemsPromesa);
-    });*/
+    !categoryId
+      ? getProducts()
+          .then((products) => setItems(products))
+          .catch((error) => {
+            console.log("Error searching items", error);
+          })
+      : getProducts("category", "==", categoryId)
+          .then((products) => setItems(products))
+          .catch((error) => {
+            console.log("Error searching items", error);
+          });
+    // if (!categoryId) {
+    //   getDocs(collection(db, "items")).then((querySnapshot) => {
+    //     products = querySnapshot.docs
+    //       .map((doc) => {
+    //         return { id: doc.id, ...doc.data() };
+    //       })
+    //       .catch((error) => {
+    //         console.log("Error searching items", error);
+    //       });
+    //     setItems(products);
+    //   });
+    // }
+    // if (categoryId) {
+    //   getDocs(
+    //     query(collection(db, "items"), where("category", "==", categoryId))
+    //   ).then((querySnapshot) => {
+    //     products = querySnapshot.docs
+    //       .map((doc) => {
+    //         return { id: doc.id, ...doc.data() };
+    //       })
+    //       .catch((error) => {
+    //         console.log("Error searching items", error);
+    //       });
+    //     setItems(products);
+    //   });
+    // }
   }, [categoryId]);
 
   return (
