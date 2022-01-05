@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react/cjs/react.development";
 import { getOrder } from "../../services/firebase";
+import { formatPrice } from "../../services/services";
 import Loader from "../general/Loader";
 
 const OrderDetail = ({ orderId }) => {
@@ -45,15 +47,20 @@ const OrderDetail = ({ orderId }) => {
                 />
               </div>
               <div className="col-5 ms-3 mt-2 align-self-start">
-                <h4 className="fs-5 text-start">{item.title}</h4>
+                <Link
+                  to={`/item/${item.id}`}
+                  className="text-decoration-none text-light"
+                >
+                  <h4 className="fs-5 text-start">{item.title}</h4>
+                </Link>
                 <p className="text-start fs-6 mx-3 my-0">{item.description}</p>
               </div>
               <div className="col-2">
                 <span>{item.quantity}</span>
-                <span> x {item.price}</span>
+                <span> x {formatPrice(item.price)}</span>
               </div>
               <div className="col-2">
-                <span>$ {item.price * item.quantity}</span>
+                <span>$ {formatPrice(item.price * item.quantity)}</span>
               </div>
               <div className="col-1"></div>
             </div>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
 import ItemCount from "./ItemCount";
 import CartContext from "../../context/CartContext";
+import { formatPrice } from "../../services/services";
 
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
@@ -36,7 +37,7 @@ const ItemDetail = ({ item = [] }) => {
           </div>
           <div className=" col-9">
             <h1 className="fs-2">Detalles de {item.title}</h1>
-            <span>Precio de lista: $ {item.price}</span>
+            <span>Precio de lista: $ {formatPrice(item.price)}</span>
             <p className="fs-5">Caracteristicas: {item.detail}</p>
             {cartStock === 0 ? (
               <ItemCount stockInicial={item.stock} onAdd={setCartStock} />

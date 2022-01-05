@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatPrice } from "../../services/services";
 const Item = ({ item = [] }) => {
   return (
     <div style={{ width: 250 }} className="border border-1 m-2 p-0">
@@ -18,9 +19,7 @@ const Item = ({ item = [] }) => {
           />
         </div>
         <div className="card-body">
-          <h4 className="fs-3 text-start">
-            $ {item.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")}
-          </h4>
+          <h4 className="fs-3 text-start">$ {formatPrice(item.price)}</h4>
           <h3 className="fs-5 fw-light text-start">{item.title}</h3>
         </div>
       </Link>

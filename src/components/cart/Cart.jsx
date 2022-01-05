@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import { firestoreSetOrder } from "../../services/firebase";
+import { formatPrice } from "../../services/services";
 
 const Cart = () => {
   const [formInput, setFormInput] = useState(false);
@@ -77,10 +78,10 @@ const Cart = () => {
                       max={item.stock}
                       step={1}
                     />
-                    <span> x {item.price}</span>
+                    <span> x {formatPrice(item.price)}</span>
                   </div>
                   <div className="col-2">
-                    <span>$ {item.price * item.quantity}</span>
+                    <span>$ {formatPrice(item.price * item.quantity)}</span>
                   </div>
                   <div className="col-1">
                     <button
@@ -108,9 +109,11 @@ const Cart = () => {
                   <p className="mb-0">Productos</p>
                   <p className="pb-0">
                     $
-                    {cartItems.reduce(
-                      (total, item) => total + item.price * item.quantity,
-                      0
+                    {formatPrice(
+                      cartItems.reduce(
+                        (total, item) => total + item.price * item.quantity,
+                        0
+                      )
                     )}
                   </p>
                   <p className="mb-0">Envio</p>
@@ -118,10 +121,12 @@ const Cart = () => {
                   <p className="mb-0">Total a pagar</p>
                   <p>
                     $
-                    {cartItems.reduce(
-                      (total, item) => total + item.price * item.quantity,
-                      0
-                    ) + 300}
+                    {formatPrice(
+                      cartItems.reduce(
+                        (total, item) => total + item.price * item.quantity,
+                        0
+                      ) + 300
+                    )}
                   </p>
                 </div>
                 <button

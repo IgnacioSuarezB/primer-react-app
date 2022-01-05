@@ -8,6 +8,7 @@ const ItemListContainer = ({ greeting }) => {
   const { categoryId } = useParams();
 
   useEffect(() => {
+    setItems([]);
     !categoryId
       ? getProducts()
           .then((products) => setItems(products))
@@ -19,32 +20,6 @@ const ItemListContainer = ({ greeting }) => {
           .catch((error) => {
             console.log("Error searching items", error);
           });
-    // if (!categoryId) {
-    //   getDocs(collection(db, "items")).then((querySnapshot) => {
-    //     products = querySnapshot.docs
-    //       .map((doc) => {
-    //         return { id: doc.id, ...doc.data() };
-    //       })
-    //       .catch((error) => {
-    //         console.log("Error searching items", error);
-    //       });
-    //     setItems(products);
-    //   });
-    // }
-    // if (categoryId) {
-    //   getDocs(
-    //     query(collection(db, "items"), where("category", "==", categoryId))
-    //   ).then((querySnapshot) => {
-    //     products = querySnapshot.docs
-    //       .map((doc) => {
-    //         return { id: doc.id, ...doc.data() };
-    //       })
-    //       .catch((error) => {
-    //         console.log("Error searching items", error);
-    //       });
-    //     setItems(products);
-    //   });
-    // }
   }, [categoryId]);
 
   return (

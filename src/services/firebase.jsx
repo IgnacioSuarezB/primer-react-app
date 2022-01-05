@@ -45,6 +45,7 @@ export const getProducts = (key, operador, value) => {
       });
   });
 };
+
 export const getItem = (id) => {
   return new Promise((resolve, reject) => {
     getDoc(doc(db, "items", id))
