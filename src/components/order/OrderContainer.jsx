@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
-import OrderDetail from "./OrderDetail";
+import OrderLogic from "./OrderLogic";
 
 const OrderContainer = () => {
   const { orderId } = useParams();
@@ -21,11 +21,12 @@ const OrderContainer = () => {
             name="findOrder"
             id="findOrder"
             placeholder="Ingrese ID de compra"
+            required
           />
           <input type="submit" value="Buscar" />
         </form>
       ) : (
-        <OrderDetail orderId={id} />
+        <OrderLogic orderId={id} />
       )}
     </div>
   );

@@ -43,8 +43,13 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <Link to={"/cart"} className=" text-decoration-none">
-          <CartWidget height={45} />
+        <Link to={"/cart"} className=" text-decoration-none d-flex">
+          <CartWidget />
+          <img
+            style={{ height: 45 }}
+            src="https://www.freepnglogos.com/uploads/shopping-cart-png/shopping-cart-trolley-images-pixabay-download-pictures-14.png"
+            alt="Carrito de compra"
+          />
         </Link>
         <button
           className="navbar-toggler"

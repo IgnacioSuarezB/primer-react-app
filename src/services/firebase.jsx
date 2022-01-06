@@ -102,8 +102,6 @@ export const firestoreSetOrder = (arrayItems, formData, total) => {
         batch
           .commit()
           .then(() => {
-            console.log("La orden fue confirmada");
-            console.log("Su número de compra es", id);
             resolve(id);
           })
           .catch((error) => reject(error));

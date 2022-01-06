@@ -7,11 +7,11 @@ import { formatPrice } from "../../services/services";
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
   const [isInCart, setIsInCart] = useState(false);
-  const { cartItems, addItem, itemInCart } = useContext(CartContext);
+  const { addItem, itemInCart } = useContext(CartContext);
 
   useEffect(() => {
     if (cartStock !== 0) {
-      if (itemInCart(cartItems, item.id)) {
+      if (itemInCart(item.id)) {
         setIsInCart(true);
       } else {
         item.quantity = cartStock;

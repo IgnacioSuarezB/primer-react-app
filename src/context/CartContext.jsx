@@ -6,8 +6,6 @@ export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const addItem = (item) => {
-    console.log([...cartItems, item]);
-    console.log([...cartItems, item]);
     setCartItems([...cartItems, item].sort((a, b) => a.price - b.price));
   };
 
@@ -20,7 +18,7 @@ export const CartContextProvider = ({ children }) => {
 
   const clearCart = () => setCartItems([]);
 
-  const itemInCart = (cartItems, itemId) => {
+  const itemInCart = (itemId) => {
     return cartItems.some((item) => item.id === itemId);
   };
 
