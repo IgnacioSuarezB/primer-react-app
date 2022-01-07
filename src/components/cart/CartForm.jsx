@@ -2,7 +2,7 @@ const CartForm = ({ handleSubmit, formRef }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="text-start fs-3 cartContainer"
+      className="text-start fs-3 cartContainer mt-5"
       ref={formRef}
     >
       <h1>Formulario de compra</h1>
@@ -42,11 +42,14 @@ const CartForm = ({ handleSubmit, formRef }) => {
         </label>
         <input
           type="email"
-          className="form-control"
+          className="form-control "
           id="emailcheck"
           aria-describedby="emailcheck"
           required
         />
+        <div id="emailcheck" className="invalid-feedback">
+          Los emails no coinciden
+        </div>
       </div>
 
       <button type="submit" className="btn btn-primary">

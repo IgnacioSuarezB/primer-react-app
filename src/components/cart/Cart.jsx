@@ -9,7 +9,6 @@ import CartForm from "./CartForm";
 const Cart = () => {
   const [formInput, setFormInput] = useState(false);
   const [redirect, setRedirect] = useState("false");
-
   const { cartItems, removeItem, changeQuantity, clearCart } =
     useContext(CartContext);
 
@@ -30,11 +29,23 @@ const Cart = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e.target.email.value === e.target.emailcheck.value) {
-      firestoreSetOrder([...cartItems], e.target, total + envio).then((id) => {
-        clearCart();
-        setFormInput(false);
-        setRedirect(id);
-      });
+      e.target.email.classList.remove("is-invalid");
+      e.target.emailcheck.classList.remove("is-invalid");
+      firestoreSetOrder([...cartItems], e.target, total + envio)
+        .then((id) => {
+          clearCart();
+          setFormInput(false);
+          setRedirect(id);
+        })
+        .catch((error) => {
+          console.error("Error en enviar el formulario ", error);
+          setRedirect("error-page");
+        });
+    } else {
+      e.target.name.classList.add("is-valid");
+      e.target.phone.classList.add("is-valid");
+      e.target.email.classList.add("is-invalid");
+      e.target.emailcheck.classList.add("is-invalid");
     }
   };
 
