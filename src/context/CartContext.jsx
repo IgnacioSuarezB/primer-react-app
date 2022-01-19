@@ -5,8 +5,14 @@ const CartContext = React.createContext([]);
 export const CartContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
-  const addItem = (item) => {
-    setCartItems([...cartItems, item].sort((a, b) => a.price - b.price));
+  const addItem = (item, quantity) => {
+    itemInCart(item.id)
+      ? changeQuantity(item, quantity)
+      : setCartItems(
+          [...cartItems, { ...item, quantity }].sort(
+            (a, b) => a.price - b.price
+          )
+        );
   };
 
   const removeItem = (itemId) => {
@@ -25,13 +31,12 @@ export const CartContextProvider = ({ children }) => {
   const changeQuantity = (item, quantity) => {
     if (quantity !== "") {
       let stock = item.stock;
+      let newQuantity = 0;
       removeItem(item.id);
-      let change = item;
-      if (stock > quantity && quantity >= 0)
-        change.quantity = parseInt(quantity);
-      if (stock <= quantity) change.quantity = stock;
-      if (quantity < 0) change.quantity = 0;
-      addItem(change);
+      if (stock > quantity && quantity >= 0) newQuantity = parseInt(quantity);
+      if (stock <= quantity) newQuantity = stock;
+      if (quantity < 0) newQuantity = 0;
+      addItem(item, newQuantity);
     }
   };
   const itemsQuantity = () =>

@@ -6,17 +6,11 @@ import { formatPrice } from "../../services/services";
 
 const ItemDetail = ({ item = [] }) => {
   const [cartStock, setCartStock] = useState(0);
-  const [isInCart, setIsInCart] = useState(false);
-  const { addItem, itemInCart } = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
 
   useEffect(() => {
     if (cartStock !== 0) {
-      if (itemInCart(item.id)) {
-        setIsInCart(true);
-      } else {
-        item.quantity = cartStock;
-        addItem(item);
-      }
+      addItem(item, cartStock);
     }
     // eslint-disable-next-line
   }, [cartStock]);
@@ -41,13 +35,6 @@ const ItemDetail = ({ item = [] }) => {
             <p className="fs-5">Caracteristicas: {item.detail}</p>
             {cartStock === 0 ? (
               <ItemCount stockInicial={item.stock} onAdd={setCartStock} />
-            ) : isInCart ? (
-              <div className="alert alert-warning text-center" role="alert">
-                Ya posee este producto en el carrito{" "}
-                <Link className="ms-4" to={"/cart"}>
-                  Ir al carrito
-                </Link>
-              </div>
             ) : (
               <div>
                 <h4>
