@@ -12,6 +12,11 @@ import {
   addDoc,
   writeBatch,
 } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC3rBO3bGmD24T_wspCwEDUn6hiQ_iFD3w",
@@ -111,4 +116,27 @@ export const firestoreSetOrder = (arrayItems, formData, total) => {
       reject("Stock < quantity", outOfStock);
     }
   });
+};
+
+// Auth firebase
+
+const auth = getAuth();
+export const registerEmail = (email, password) => {
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log(user);
+
+      sendEmailVerification(user).then(() => {
+        console.log("Email enviado");
+      });
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+      // ..
+    });
 };

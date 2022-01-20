@@ -43,6 +43,9 @@ function Navbar() {
             </li>
           </ul>
         </div>
+        <Link to={"/login"} className=" text-decoration-none d-flex">
+          Ingresar
+        </Link>
         <Link to={"/cart"} className=" text-decoration-none d-flex">
           <CartWidget />
           <img

@@ -6,6 +6,7 @@ import Navbar from "./components/general/Navbar";
 import Cart from "./components/cart/Cart";
 import { CartContextProvider } from "./context/CartContext";
 import OrderContainer from "./components/order/OrderContainer";
+import Login from "./components/login/Login";
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
               </Route>
               <Route path="/order/:orderId">
                 <OrderContainer />
+              </Route>
+              <Route path="/login">
+                <Login />
               </Route>
             </Switch>
           </main>
