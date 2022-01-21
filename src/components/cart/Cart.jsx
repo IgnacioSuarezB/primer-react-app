@@ -108,8 +108,8 @@ const Cart = () => {
 
       {formInput === true ? (
         <CartForm handleSubmit={handleSubmit} formRef={formRef} />
-      ) : redirect === "false" ? null : (
-        <Redirect to={"/order/" + redirect} />
+      ) : (
+        redirect !== "false" && <Redirect to={"/order/" + redirect} />
       )}
     </>
   );

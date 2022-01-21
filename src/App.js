@@ -7,6 +7,7 @@ import Cart from "./components/cart/Cart";
 import { CartContextProvider } from "./context/CartContext";
 import OrderContainer from "./components/order/OrderContainer";
 import Login from "./components/login/Login";
+import SingUp from "./components/login/SingUp";
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
               </Route>
               <Route path="/login">
                 <Login />
+              </Route>
+              <Route path="/singup">
+                <SingUp />
               </Route>
             </Switch>
           </main>

@@ -16,6 +16,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -121,7 +122,7 @@ export const firestoreSetOrder = (arrayItems, formData, total) => {
 // Auth firebase
 
 const auth = getAuth();
-export const registerEmail = (email, password) => {
+export const registerUser = (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -138,5 +139,22 @@ export const registerEmail = (email, password) => {
       console.log(errorCode);
       console.log(errorMessage);
       // ..
+    });
+};
+
+export const loginUser = (email, password) => {
+  const auth = getAuth();
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      console.log("usuario logeado", user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
     });
 };
