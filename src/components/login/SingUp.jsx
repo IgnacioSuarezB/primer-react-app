@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../../context/UserContext";
 import { registerUser } from "../../services/firebase";
 import SingUpForm from "./SingUpForm";
 
 const SingUp = () => {
+  const { setUsuario } = useContext(UserContext);
   const handleSingUp = (e) => {
     e.preventDefault();
-    registerUser(e.target.email.value, e.target.password.value);
+    registerUser(e.target.email.value, e.target.password.value).then((user) => {
+      setUsuario(user);
+    });
   };
   return (
     <div>
