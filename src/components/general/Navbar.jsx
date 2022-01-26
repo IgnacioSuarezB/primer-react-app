@@ -1,6 +1,7 @@
 import CartWidget from "./CartWidget";
 import { Link } from "react-router-dom";
 import "../../App.css";
+import NavbarLogin from "../login/NavbarLogin";
 
 function Navbar() {
   return (
@@ -43,9 +44,7 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <Link to={"/login"} className=" text-decoration-none d-flex">
-          Ingresar
-        </Link>
+        <NavbarLogin />
         <Link to={"/cart"} className=" text-decoration-none d-flex">
           <CartWidget />
           <img

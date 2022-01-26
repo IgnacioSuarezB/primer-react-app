@@ -38,7 +38,7 @@ const ItemCount = ({ stockInicial = 0, onAdd }) => {
             Agregar al carrito
           </button>
 
-          <button type="button" class="btn btn-danger ms-4">
+          <button type="button" className="btn btn-danger ms-4">
             Sin Stock
           </button>
         </>

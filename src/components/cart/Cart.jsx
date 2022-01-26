@@ -1,18 +1,17 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import CartContext from "../../context/CartContext";
 import { firestoreSetOrder } from "../../services/firebase";
 import { formatPrice } from "../../services/services";
 import CartItem from "./CartItem";
-import CartForm from "./CartForm";
-
+import UserContext from "../../context/UserContext";
 const Cart = () => {
   const [formInput, setFormInput] = useState(false);
   const [redirect, setRedirect] = useState("false");
   const { cartItems, removeItem, changeQuantity, clearCart } =
     useContext(CartContext);
 
-  const formRef = useRef(null);
+  const { user } = useContext(UserContext);
 
   const envio = 300;
   let total = cartItems.reduce(
@@ -20,18 +19,8 @@ const Cart = () => {
     0
   );
   const handleShopout = () => {
-    setFormInput(true);
-    setTimeout(() => {
-      formRef.current.scrollIntoView();
-    }, 100);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (e.target.email.value === e.target.emailcheck.value) {
-      e.target.email.classList.remove("is-invalid");
-      e.target.emailcheck.classList.remove("is-invalid");
-      firestoreSetOrder([...cartItems], e.target, total + envio)
+    if (user)
+      firestoreSetOrder([...cartItems], user, total + envio)
         .then((id) => {
           clearCart();
           setFormInput(false);
@@ -41,11 +30,8 @@ const Cart = () => {
           console.error("Error en enviar el formulario ", error);
           setRedirect("error-page");
         });
-    } else {
-      e.target.name.classList.add("is-valid");
-      e.target.phone.classList.add("is-valid");
-      e.target.email.classList.add("is-invalid");
-      e.target.emailcheck.classList.add("is-invalid");
+    else {
+      setFormInput(true);
     }
   };
 
@@ -107,7 +93,7 @@ const Cart = () => {
       )}
 
       {formInput === true ? (
-        <CartForm handleSubmit={handleSubmit} formRef={formRef} />
+        <Link to="/login">Ingrese para finalizar la compra</Link>
       ) : (
         redirect !== "false" && <Redirect to={"/order/" + redirect} />
       )}

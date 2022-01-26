@@ -17,6 +17,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -74,7 +75,7 @@ export const getOrder = (orderId) => {
   });
 };
 
-export const firestoreSetOrder = (arrayItems, formData, total) => {
+export const firestoreSetOrder = (arrayItems, user, total) => {
   return new Promise((resolve, reject) => {
     const batch = writeBatch(db);
     const outOfStock = [];
@@ -96,9 +97,9 @@ export const firestoreSetOrder = (arrayItems, formData, total) => {
     if (outOfStock.length === 0) {
       const shopoutForm = {
         buyer: {
-          name: formData.name.value,
-          phone: formData.phone.value,
-          email: formData.email.value,
+          name: user.auth.name,
+          phone: user.phoneNumber,
+          email: user.email,
         },
         items: [...arrayItems],
         total: total,
@@ -122,7 +123,8 @@ export const firestoreSetOrder = (arrayItems, formData, total) => {
 // Auth firebase
 
 const auth = getAuth();
-export const registerUser = (email, password) => {
+
+export const registerUser = (email, password, name, phone) => {
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -130,9 +132,14 @@ export const registerUser = (email, password) => {
         const user = userCredential.user;
         console.log(user);
 
-        sendEmailVerification(user).then(() => {
-          console.log("Email enviado");
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        }).then(() => {
+          sendEmailVerification(user).then(() => {
+            console.log("Email enviado");
+          });
         });
+
         resolve(user);
       })
       .catch((error) => {
@@ -164,4 +171,12 @@ export const loginUser = (email, password) => {
         console.log(errorMessage);
       });
   });
+};
+
+export const authChanged = (setUser) => {
+  auth.onAuthStateChanged(setUser);
+};
+
+export const signOut = () => {
+  auth.signOut();
 };

@@ -4,11 +4,16 @@ import { registerUser } from "../../services/firebase";
 import SingUpForm from "./SingUpForm";
 
 const SingUp = () => {
-  const { setUsuario } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const handleSingUp = (e) => {
     e.preventDefault();
-    registerUser(e.target.email.value, e.target.password.value).then((user) => {
-      setUsuario(user);
+    registerUser(
+      e.target.email.value,
+      e.target.password.value,
+      e.target.name.value,
+      e.target.phone.value
+    ).then((user) => {
+      setUser(user);
     });
   };
   return (

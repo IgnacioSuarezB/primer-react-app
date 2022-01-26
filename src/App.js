@@ -9,6 +9,7 @@ import OrderContainer from "./components/order/OrderContainer";
 import Login from "./components/login/Login";
 import SingUp from "./components/login/SingUp";
 import { UserContextProvider } from "./context/UserContext";
+import Private from "./components/general/Private";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <CartContextProvider>
           <BrowserRouter>
             <Navbar />
+            <Private />
             <main className="App-main container maxWidth ">
               <Switch>
                 <Route exact path="/">
