@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import { getOrder } from "../../services/firebase";
 import Loader from "../general/Loader";
 import Order from "./Order";

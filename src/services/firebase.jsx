@@ -97,7 +97,7 @@ export const firestoreSetOrder = (arrayItems, user, total) => {
     if (outOfStock.length === 0) {
       const shopoutForm = {
         buyer: {
-          name: user.auth.name,
+          name: user.auth.displayName,
           phone: user.phoneNumber,
           email: user.email,
         },
