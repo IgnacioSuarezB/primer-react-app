@@ -3,7 +3,7 @@ import { getOrder } from "../../services/firebase";
 import Loader from "../general/Loader";
 import Order from "./Order";
 
-const OrderDetail = ({ orderId }) => {
+const OrderDetail = ({ orderId, buyId }) => {
   const [order, setOrder] = useState({});
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const OrderDetail = ({ orderId }) => {
           <h3>Comuniquese con Soporte</h3>
         </div>
       ) : (
-        <Order order={order} />
+        <Order order={order} buyId={buyId} />
       )}
     </div>
   );

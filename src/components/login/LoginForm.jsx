@@ -2,7 +2,7 @@ import React from "react";
 
 const LoginForm = ({ handleLogin }) => {
   return (
-    <form onSubmit={handleLogin} className="text-start fs-3 mt-5">
+    <form onSubmit={handleLogin} className="text-start fs-3" id="formLogin">
       <div className="mb-3">
         <label htmlFor="email" className="form-label">
           Dirección Email

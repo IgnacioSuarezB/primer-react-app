@@ -1,10 +1,11 @@
 import React from "react";
 
-const SingUpForm = ({ handleSingUp }) => {
+const SingUpForm = ({ handleSingUp, error }) => {
   return (
     <form
       onSubmit={handleSingUp}
       className="text-start fs-3 cartContainer mt-5"
+      id="formSingUp"
     >
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
@@ -62,6 +63,11 @@ const SingUpForm = ({ handleSingUp }) => {
           aria-describedby="password"
           required
         />
+        {error && (
+          <span className="fs-5 bg-danger py-1 px-2 rounded-pill opacity-75">
+            Dicho mail ya se encuentra en uso
+          </span>
+        )}
       </div>
 
       <button type="submit" className="btn btn-primary">

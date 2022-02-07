@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../services/services";
 
-const Order = ({ order }) => {
+const Order = ({ order, buyId }) => {
   return (
     <div>
-      <h1>Resumen de Compra</h1>
+      {buyId ? <h1>Gracias por su compra</h1> : <h1>Resumen de Compra</h1>}
       <h3 className="mb-5">Numero de Orden: {order.id}</h3>
       {order.items.map((item) => (
         <div

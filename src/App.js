@@ -10,6 +10,7 @@ import Login from "./components/login/Login";
 import SingUp from "./components/login/SingUp";
 import { UserContextProvider } from "./context/UserContext";
 import Private from "./components/general/Private";
+import CheckEmail from "./components/login/CheckEmail";
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
                 </Route>
                 <Route path="/singup">
                   <SingUp />
+                </Route>
+                <Route path="/checkemail">
+                  <CheckEmail />
                 </Route>
               </Switch>
             </main>

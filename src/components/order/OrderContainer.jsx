@@ -26,7 +26,7 @@ const OrderContainer = () => {
           <input type="submit" value="Buscar" />
         </form>
       ) : (
-        <OrderLogic orderId={id} />
+        <OrderLogic orderId={id} buyId={orderId} />
       )}
     </div>
   );

@@ -13,6 +13,7 @@ export const CartContextProvider = ({ children }) => {
             (a, b) => a.price - b.price
           )
         );
+    console.log(item);
   };
 
   const removeItem = (itemId) => {

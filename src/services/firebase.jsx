@@ -33,6 +33,8 @@ const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
 
+// Products and Orders Logic
+
 export const getProducts = (key, operador, value) => {
   return new Promise((resolve, reject) => {
     const collectionQuery =
@@ -124,7 +126,7 @@ export const firestoreSetOrder = (arrayItems, user, total) => {
 
 const auth = getAuth();
 
-export const registerUser = (email, password, name, phone) => {
+export const registerUser = (email, password, name) => {
   return new Promise((resolve, reject) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -147,6 +149,7 @@ export const registerUser = (email, password, name, phone) => {
         const errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
+        reject(error);
         // ..
       });
   });
@@ -169,6 +172,7 @@ export const loginUser = (email, password) => {
         const errorMessage = error.message;
         console.log(errorCode);
         console.log(errorMessage);
+        reject(error);
       });
   });
 };
